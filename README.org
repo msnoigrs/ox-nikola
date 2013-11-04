@@ -1,0 +1,265 @@
+#+TITLE: export Nikola blog posts in reStructuredText syntax from Org-Mode
+#+AUTHOR: IGARASHI Masanao
+#+EMAIL: syoux2@gmail.com
+#+DATE: 2013/11/03 13:50
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE: en
+#+OPTIONS: H:4 num:nil toc:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil
+#+OPTIONS: author:t creator:nil email:nil date:t
+
+* Ox-Nikola
+
+  *Ox-Nikola* exports your [[http://orgmode.org][Org]] documents to [[http://getnikola.com][Nikola]] posts in reStructuredText.
+  Ox-Nikola depends on [[https://github.com/masayuko/ox-rst][Ox-Rst]] and relies on the Org-mode 8.0 export framework.
+
+* Configuration
+
+  Add the following in your init.el
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-nikola)
+#+END_SRC
+
+* reStructuredText export
+
+  =ox-nikola= export back-end generates nikola blog posts
+  in reStructuredText syntax for an Org mode buffer.
+
+** reStructuredText commands
+
+  To export your org document to, press =C-c C-e=, and then =n=.
+
+*** =C-c C-e n r (org-nikola-export-to-rst)=
+
+    Export as a text file written in reStructured syntax.
+    For an Org file, =post.org=, the resulting file will be =post.rst=.
+    The file will be overwritten without warning.
+
+*** =C-c C-e n R (org-nikola-export-as-rst)=
+
+    Export as a temporary buffer. Do not create a file.
+
+** Title, Date, Slug and other Nikola header
+
+   Org:
+#+BEGIN_SRC org-mode
+#+TITLE: This is the title of the document
+#+AUTHOR: Author
+#+EMAIL: mailaddress@example.com
+#+DATE: 2013/12/31 00:00
+#+DESCRIPTION: description text
+#+OPTIONS: author:nil
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. title: This is the title of the document
+.. slug: This-is-the-title-of-the-document
+.. date: 2013/12/31 00:00
+.. tags:
+.. link:
+.. description: description text
+#+END_SRC
+
+*** Slug
+
+   Org:
+#+BEGIN_SRC org-mode
+#+TITLE: This is the title of the document
+#+NIKOLA_SLUG: slug-for-nikola
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. title: This is the title of the document
+.. nikola: slug-for-nikola
+#+END_SRC
+
+*** Tags
+
+   Org:
+#+BEGIN_SRC org-mode
+#+NIKOLA_TAGS: tag1, tag2
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. tags: tag1, tag2
+#+END_SRC
+
+*** Category
+
+   Org:
+#+BEGIN_SRC org-mode
+#+NIKOLA_CATEGORY: category
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. category: category
+#+END_SRC
+
+*** Author
+
+   Org:
+#+BEGIN_SRC org-mode
+#+AUTHOR: Author
+#+OPTIONS: author:t email:nil
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. author: Author
+#+END_SRC
+
+   Org:
+#+BEGIN_SRC org-mode
+#+AUTHOR: Author
+#+EMAIL: emailaddress@example.com
+#+OPTIONS: author:t email:t
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. author: Author (emailaddress@example.com)
+#+END_SRC
+
+*** Link
+
+   Org:
+#+BEGIN_SRC org-mode
+#+NIKOLA_LINK: http://some
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. link: http://some
+#+END_SRC
+
+*** Password
+
+   Org:
+#+BEGIN_SRC org-mode
+#+NIKOLA_PASSWORD: password
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. password: password
+#+END_SRC
+
+*** Nocomments
+
+   Org:
+#+BEGIN_SRC org-mode
+#+NIKOLA_NOCOMMENTS: True
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. nocomments: True
+#+END_SRC
+
+*** Annotations, Noannotasions
+
+   Org:
+#+BEGIN_SRC org-mode
+#+NIKOLA_ANNOTATIONS: True
+
+or
+
+#+NIKOLA_NOANNOTATIONS: True
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. annotations: True
+
+or
+
+.. noannotations: True
+#+END_SRC
+
+
+** Teasers
+
+   Org:
+#+BEGIN_SRC org-mode
+#+RST: .. TEASER_END
+
+#+RST: .. TEASER_END: click to read the rest of the article
+#+END_SRC
+
+   reStructuredText:
+#+BEGIN_SRC rst-mode
+.. TEASER_END
+
+.. TEASER_END: click to read the rest of the article
+#+END_SRC
+
+** Nikola posts template
+
+   I use [[http://www.emacswiki.org/emacs/AutoInsertMode][Auto Insert Mode]] and [[https://github.com/capitaomorte/yasnippet][yasnippet]] for Nikola Org skeleton:
+
+#+BEGIN_SRC emacs-lisp
+(auto-insert-mode)
+(setq auto-insert-query nil)
+(setq auto-insert-directory "~/templates/")
+(setq auto-insert 'other)
+
+(defun my/autoinsert-yas-expand ()
+      "Replace text in yasnippet template."
+      (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+
+(setq auto-insert-alist
+    (append
+    '((("blog/.*\\.org$" . "org-mode") . ["nikola.org" my/autoinsert-yas-expand])
+     (("\\.org$\\'" . "org-mode") . ["template.org" my/autoinsert-yas-expand])
+     ) auto-insert-alist))
+#+END_SRC
+
+   and the ~/templates/nikola.org is as follows.
+
+#+BEGIN_SRC org-mode
+#+TITLE: `(replace-regexp-in-string "-" " " (file-name-base))`
+#+AUTHOR: Author
+#+EMAIL: mailaddress@example.com
+#+DATE: `(format-time-string "%Y/%m/%d %H:%M" (current-time))`
+#+DESCRIPTION:
+#+NIKOLA_TAGS:
+#+KEYWORDS:
+#+OPTIONS: H:4 num:nil toc:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil
+#+OPTIONS: author:nil creator:nil email:nil date:t
+#+MACRO: teaser #+RST: .. TEASER_END
+#+END_SRC
+
+   To create a new post, you will find-file =~/docs/blog/how-to-make-money.org=.
+
+** org-publish configuration
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-publish)
+(require 'ox-nikola)
+
+(defun auto-export-my-blog ()
+  (let* ((project-plist (cdr (assoc "blog" org-publish-project-alist)))
+         (project-dir (expand-file-name
+                       (plist-get project-plist :base-directory))))
+    (save-excursion
+      (if (string= project-dir (file-name-directory buffer-file-name))
+          (org-publish-current-file)))))
+
+(add-hook 'after-save-hook 'auto-export-my-blog)
+
+(add-to-list 'org-publish-project-alist
+             '("blog" . (:base-directory "~/docs/blog/"
+                   :base-extension "org"
+                   :publishing-directory "~/nikola/mysite/posts/"
+                   :publishing-function (org-nikola-publish-to-rst))))
+                   :body-only t)))
+#+END_SRC
+
+   Every time you save =~/docs/blog/how-to-make-money.org=, =~/nikola/mysite/posts/how-to-make-money.rst= will be published.

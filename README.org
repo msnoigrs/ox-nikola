@@ -216,7 +216,7 @@ or
 (setq auto-insert-alist
     (append
     '((("blog/.*\\.org$" . "org-mode") . ["nikola.org" my/autoinsert-yas-expand])
-     (("\\.org$\\'" . "org-mode") . ["template.org" my/autoinsert-yas-expand])
+     (("\\.org$" . "org-mode") . ["template.org" my/autoinsert-yas-expand])
      ) auto-insert-alist))
 #+END_SRC
 

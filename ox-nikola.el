@@ -139,7 +139,7 @@ holding export options."
      (cond ((and (not (string= "" author)) (plist-get info :with-author))
 			(concat "\n.. author: " author)))
      (cond ((and (not (string= "" email)) (plist-get info :with-email))
-			(format " (%s)" email)))
+			(format " <%s>" email)))
      (cond ((not (string= "" password)) (concat "\n.. password: " password)))
 	 (cond ((not (string= "" template)) (concat "\n.. template: " template)))
      (cond ((not (string= "" category)) (concat "\n.. category: " category)))

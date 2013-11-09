@@ -19,7 +19,7 @@
   Add the following in your init.el
 
 #+BEGIN_SRC emacs-lisp
-(require 'ox-nikola)
+  (require 'ox-nikola)
 #+END_SRC
 
 * reStructuredText export
@@ -29,7 +29,7 @@
 
 ** reStructuredText commands
 
-  To export your org document to, press =C-c C-e=, and then =n=.
+   To export your org document to, press =C-c C-e=, and then =n=.
 
 *** =C-c C-e n r (org-nikola-export-to-rst)=
 
@@ -44,222 +44,225 @@
 ** Title, Date, Slug and other Nikola header
 
    Org:
-#+BEGIN_SRC org-mode
-#+TITLE: This is the title of the document
-#+AUTHOR: Author
-#+EMAIL: mailaddress@example.com
-#+DATE: 2013/12/31 00:00
-#+DESCRIPTION: description text
-#+OPTIONS: author:nil
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+TITLE: This is the title of the document
+  ,#+AUTHOR: Author
+  ,#+EMAIL: mailaddress@example.com
+  ,#+DATE: 2013/12/31 00:00
+  ,#+DESCRIPTION: description text
+  ,#+OPTIONS: author:nil
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. title: This is the title of the document
-.. slug: This-is-the-title-of-the-document
-.. date: 2013/12/31 00:00
-.. tags:
-.. link:
-.. description: description text
+#+BEGIN_SRC rst
+  .. title: This is the title of the document
+  .. slug: This-is-the-title-of-the-document
+  .. date: 2013/12/31 00:00
+  .. tags:
+  .. link:
+  .. description: description text
 #+END_SRC
 
 *** Slug
 
    Org:
-#+BEGIN_SRC org-mode
-#+TITLE: This is the title of the document
-#+NIKOLA_SLUG: slug-for-nikola
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+TITLE: This is the title of the document
+  ,#+NIKOLA_SLUG: slug-for-nikola
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. title: This is the title of the document
-.. nikola: slug-for-nikola
+#+BEGIN_SRC rst
+  .. title: This is the title of the document
+  .. nikola: slug-for-nikola
 #+END_SRC
 
 *** Tags
 
    Org:
-#+BEGIN_SRC org-mode
-#+NIKOLA_TAGS: tag1, tag2
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_TAGS: tag1, tag2
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. tags: tag1, tag2
+#+BEGIN_SRC rst
+  .. tags: tag1, tag2
 #+END_SRC
 
 *** Category
 
    Org:
-#+BEGIN_SRC org-mode
-#+NIKOLA_CATEGORY: category
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_CATEGORY: category
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. category: category
+#+BEGIN_SRC rst
+  .. category: category
 #+END_SRC
 
 *** Author
 
    Org:
-#+BEGIN_SRC org-mode
-#+AUTHOR: Author
-#+OPTIONS: author:t email:nil
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+AUTHOR: Author
+  ,#+OPTIONS: author:t email:nil
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. author: Author
+#+BEGIN_SRC rst
+  .. author: Author
 #+END_SRC
 
    Org:
-#+BEGIN_SRC org-mode
-#+AUTHOR: Author
-#+EMAIL: emailaddress@example.com
-#+OPTIONS: author:t email:t
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+AUTHOR: Author
+  ,#+EMAIL: emailaddress@example.com
+  ,#+OPTIONS: author:t email:t
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. author: Author (emailaddress@example.com)
+#+BEGIN_SRC rst
+  .. author: Author (emailaddress@example.com)
 #+END_SRC
 
 *** Link
 
    Org:
-#+BEGIN_SRC org-mode
-#+NIKOLA_LINK: http://some
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_LINK: http://some
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. link: http://some
+#+BEGIN_SRC rst
+  .. link: http://some
 #+END_SRC
 
 *** Password
 
    Org:
-#+BEGIN_SRC org-mode
-#+NIKOLA_PASSWORD: password
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_PASSWORD: password
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. password: password
+#+BEGIN_SRC rst
+  .. password: password
 #+END_SRC
 
 *** Nocomments
 
    Org:
-#+BEGIN_SRC org-mode
-#+NIKOLA_NOCOMMENTS: True
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_NOCOMMENTS: True
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. nocomments: True
+#+BEGIN_SRC rst
+  .. nocomments: True
 #+END_SRC
 
 *** Annotations, Noannotasions
 
    Org:
-#+BEGIN_SRC org-mode
-#+NIKOLA_ANNOTATIONS: True
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_ANNOTATIONS: True
+#+END_EXAMPLE
 
-or
+   or
 
-#+NIKOLA_NOANNOTATIONS: True
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_NOANNOTATIONS: True
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. annotations: True
-
-or
-
-.. noannotations: True
+#+BEGIN_SRC rst
+  .. annotations: True
 #+END_SRC
 
+   or
+
+#+BEGIN_SRC rst
+  .. noannotations: True
+#+END_SRC
 
 ** Teasers
 
    Org:
-#+BEGIN_SRC org-mode
-#+RST: .. TEASER_END
+#+BEGIN_EXAMPLE
+  ,#+RST: .. TEASER_END
 
-#+RST: .. TEASER_END: click to read the rest of the article
-#+END_SRC
+  ,#+RST: .. TEASER_END: click to read the rest of the article
+#+END_EXAMPLE
 
    reStructuredText:
-#+BEGIN_SRC rst-mode
-.. TEASER_END
+#+BEGIN_SRC rst
+  .. TEASER_END
 
-.. TEASER_END: click to read the rest of the article
+  .. TEASER_END: click to read the rest of the article
 #+END_SRC
 
 ** Nikola posts template
 
    I use [[http://www.emacswiki.org/emacs/AutoInsertMode][Auto Insert Mode]] and [[https://github.com/capitaomorte/yasnippet][yasnippet]] for Nikola Org skeleton:
 
-#+BEGIN_SRC emacs-lisp
-(auto-insert-mode)
-(setq auto-insert-query nil)
-(setq auto-insert-directory "~/templates/")
-(setq auto-insert 'other)
-
-(defun my/autoinsert-yas-expand ()
-      "Replace text in yasnippet template."
-      (yas-expand-snippet (buffer-string) (point-min) (point-max)))
-
-(setq auto-insert-alist
-    (append
-    '((("blog/.*\\.org$" . "org-mode") . ["nikola.org" my/autoinsert-yas-expand])
-     (("\\.org$" . "org-mode") . ["template.org" my/autoinsert-yas-expand])
-     ) auto-insert-alist))
+#+BEGIN_SRC lisp
+  (auto-insert-mode)
+  (setq auto-insert-query nil)
+  (setq auto-insert-directory "~/templates/")
+  (setq auto-insert 'other)
+  
+  (defun my/autoinsert-yas-expand ()
+        "Replace text in yasnippet template."
+        (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+  
+  (setq auto-insert-alist
+      (append
+      '((("blog/.*\\.org$" . "org-mode") . ["nikola.org" my/autoinsert-yas-expand])
+       (("\\.org$" . "org-mode") . ["template.org" my/autoinsert-yas-expand])
+       ) auto-insert-alist))
 #+END_SRC
 
    and the ~/templates/nikola.org is as follows.
 
-#+BEGIN_SRC org-mode
-#+TITLE: `(replace-regexp-in-string "-" " " (file-name-base))`
-#+AUTHOR: Author
-#+EMAIL: mailaddress@example.com
-#+DATE: `(format-time-string "%Y/%m/%d %H:%M" (current-time))`
-#+DESCRIPTION:
-#+NIKOLA_TAGS:
-#+KEYWORDS:
-#+OPTIONS: H:4 num:nil toc:nil ::t |:t ^:t -:t f:t *:t <:t
-#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil
-#+OPTIONS: author:nil creator:nil email:nil date:t
-#+MACRO: teaser #+RST: .. TEASER_END
-#+END_SRC
+#+BEGIN_EXAMPLE
+  ,#+TITLE: `(replace-regexp-in-string "-" " " (file-name-base))`
+  ,#+AUTHOR: Author
+  ,#+EMAIL: mailaddress@example.com
+  ,#+DATE: `(format-time-string "%Y/%m/%d %H:%M" (current-time))`
+  ,#+DESCRIPTION:
+  ,#+NIKOLA_TAGS:
+  ,#+KEYWORDS:
+  ,#+OPTIONS: H:4 num:nil toc:nil ::t |:t ^:t -:t f:t *:t <:t
+  ,#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil
+  ,#+OPTIONS: author:nil creator:nil email:nil date:t
+  ,#+MACRO: teaser #+RST: .. TEASER_END
+#+END_EXAMPLE
 
    To create a new post, you will find-file =~/docs/blog/how-to-make-money.org=.
 
 ** org-publish configuration
 
-#+BEGIN_SRC emacs-lisp
-(require 'ox-publish)
-(require 'ox-nikola)
-
-(defun auto-export-my-blog ()
-  (let* ((project-plist (cdr (assoc "blog" org-publish-project-alist)))
-         (project-dir (expand-file-name
-                       (plist-get project-plist :base-directory))))
-    (save-excursion
-      (if (string= project-dir (file-name-directory buffer-file-name))
-          (org-publish-current-file)))))
-
-(add-hook 'after-save-hook 'auto-export-my-blog)
-
-(add-to-list 'org-publish-project-alist
-             '("blog" . (:base-directory "~/docs/blog/"
-                   :base-extension "org"
-                   :publishing-directory "~/nikola/mysite/posts/"
-                   :publishing-function (org-nikola-publish-to-rst))))
-                   :body-only t)))
+#+BEGIN_SRC lisp
+  (require 'ox-publish)
+  (require 'ox-nikola)
+  
+  (defun auto-export-my-blog ()
+    (let* ((project-plist (cdr (assoc "blog" org-publish-project-alist)))
+           (project-dir (expand-file-name
+                         (plist-get project-plist :base-directory))))
+      (save-excursion
+        (if (string= project-dir (file-name-directory buffer-file-name))
+            (org-publish-current-file)))))
+  
+  (add-hook 'after-save-hook 'auto-export-my-blog)
+  
+  (add-to-list 'org-publish-project-alist
+               '("blog" . (:base-directory "~/docs/blog/"
+                     :base-extension "org"
+                     :publishing-directory "~/nikola/mysite/posts/"
+                     :publishing-function (org-nikola-publish-to-rst))))
+                     :body-only t)))
 #+END_SRC
 
    Every time you save =~/docs/blog/how-to-make-money.org=, =~/nikola/mysite/posts/how-to-make-money.rst= will be published.

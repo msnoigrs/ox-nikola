@@ -30,6 +30,11 @@
   :group 'org-export-nikola
   :type 'string)
 
+(defcustom org-nikola-type "text"
+  "Default type in a Nikola article."
+  :group 'org-export-nikola
+  :type 'string)
+
 (defcustom org-nikola-password ""
   "Default password in a Nikola article."
   :group 'org-export-nikola
@@ -55,6 +60,11 @@
   :group 'org-export-nikola
   :type 'string)
 
+(defcustom org-nikola-hidetitle ""
+  "Default hidetitle metadata field in a Nikola article. True or other"
+  :group 'org-export-nikola
+  :type 'string)
+
 
 ;;; Define Back-End
 
@@ -70,12 +80,14 @@
 	(:nikola-slug "NIKOLA_SLUG" nil "")
 	(:nikola-tags "NIKOLA_TAGS" nil "")
 	(:nikola-link "NIKOLA_LINK" nil "")
+	(:nikola-type "NIKOLA_TYPE" nil org-nikola-type)
 	(:nikola-password "NIKOLA_PASSWORD" nil org-nikola-password)
 	(:nikola-template "NIKOLA_TEMPLATE" nil org-nikola-nikola-template)
     (:nikola-category "NIKOLA_CATEGORY" nil org-nikola-category)
     (:nikola-annotations "NIKOLA_ANNOTATIONS" nil org-nikola-annotations)
     (:nikola-annotations "NIKOLA_NOANNOTATIONS" nil org-nikola-noannotations)
-    (:nikola-nocomments "NIKOLA_NOCOMMENTS" nil org-nikola-nocomments)))
+    (:nikola-nocomments "NIKOLA_NOCOMMENTS" nil org-nikola-nocomments)
+    (:nikola-hidetitle "NIKOLA_HIDETITLE" nil org-nikola-hidetitle)))
 
 
 ;;; Template
@@ -111,6 +123,8 @@ holding export options."
 		  (org-nikola--get-option info :nikola-link))
 		 (description
 		  (org-nikola--get-option info :description))
+		 (type
+		  (org-nikola--get-option info :nikola-type))
 		 (author
 		  (org-nikola--get-option info :author))
 		 (email
@@ -126,7 +140,9 @@ holding export options."
 		 (noannotations
 		  (org-nikola--get-true-option info :nikola-noannotations))
 		 (nocomments
-		  (org-nikola--get-true-option info :nikola-nocomments)))
+		  (org-nikola--get-true-option info :nikola-nocomments))
+		 (hidetitle
+		  (org-nikola--get-true-option info :nikola-hidetitle)))
     (concat
      ".. title: "      title
      "\n.. slug: "     (replace-regexp-in-string "[　]+" "-"
@@ -136,6 +152,7 @@ holding export options."
      "\n.. tags: "     tags
      "\n.. link: "     link
      "\n.. description: " description
+     (cond ((not (string= "" type)) (concat "\n.. type: " type)))
      (cond ((and (not (string= "" author)) (plist-get info :with-author))
 			(concat "\n.. author: " author)))
      (cond ((and (not (string= "" email)) (plist-get info :with-email))
@@ -148,7 +165,9 @@ holding export options."
      (cond ((not (string= "" noannotations))
 			(concat "\n.. noannotations: " noannotations)))
      (cond ((not (string= "" nocomments))
-			(concat "\n.. nocomments: " nocomments))))))
+			(concat "\n.. nocomments: " nocomments)))
+     (cond ((not (string= "" hidetitle))
+			(concat "\n.. hidetitle: " hidetitle))))))
 
 
 ;;; End-User functions

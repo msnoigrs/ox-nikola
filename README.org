@@ -51,6 +51,7 @@
   ,#+DATE: 2013/12/31 00:00
   ,#+DESCRIPTION: description text
   ,#+OPTIONS: author:nil
+  ,#+NIKOLA_TYPE: text
 #+END_EXAMPLE
 
    reStructuredText:
@@ -61,6 +62,7 @@
   .. tags:
   .. link:
   .. description: description text
+  .. type: text
 #+END_SRC
 
 *** Slug
@@ -185,6 +187,31 @@
 #+BEGIN_SRC rst
   .. noannotations: True
 #+END_SRC
+
+*** Type
+
+   Org:
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_TYPE: text
+#+END_EXAMPLE
+
+   reStructuredText:
+#+BEGIN_SRC rst
+  .. type: text
+#+END_SRC
+
+*** Hidetitle
+
+   Org:
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_HIDETITLE: True
+#+END_EXAMPLE
+
+   reStructuredText:
+#+BEGIN_SRC rst
+  .. hidetitle: True
+#+END_SRC
+
 
 ** Teasers
 

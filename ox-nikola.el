@@ -1,6 +1,6 @@
 ;;; ox-nikola.el --- Export Nikola articles using org-mode.
 
-;; Copyright (C) 2014  IGARASHI Masanao
+;; Copyright (C) 2014,2015  IGARASHI Masanao
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -81,6 +81,15 @@
   :group 'org-export-nikola
   :type 'string)
 
+(defcustom org-nikola-previewimage ""
+  "Default previewimage in a Nikola article."
+  :group 'org-export-nikola
+  :type 'string)
+
+(defcustom org-nikola-enclosure ""
+  "Default enclosure in a Nikola article."
+  :group 'org-export-nikola
+  :type 'string)
 
 ;;; Define Back-End
 
@@ -103,7 +112,9 @@
     (:nikola-annotations "NIKOLA_ANNOTATIONS" nil org-nikola-annotations)
     (:nikola-annotations "NIKOLA_NOANNOTATIONS" nil org-nikola-noannotations)
     (:nikola-nocomments "NIKOLA_NOCOMMENTS" nil org-nikola-nocomments)
-    (:nikola-hidetitle "NIKOLA_HIDETITLE" nil org-nikola-hidetitle)))
+    (:nikola-hidetitle "NIKOLA_HIDETITLE" nil org-nikola-hidetitle)
+    (:nikola-previewimage "NIKOLA_PREVIEWIMAGE" nil org-nikola-previewimage)
+    (:nikola-previewimage "NIKOLA_ENCLOSURE" nil org-nikola-enclosure)))
 
 
 ;;; Template
@@ -158,7 +169,11 @@ holding export options."
 		 (nocomments
 		  (org-nikola--get-true-option info :nikola-nocomments))
 		 (hidetitle
-		  (org-nikola--get-true-option info :nikola-hidetitle)))
+		  (org-nikola--get-true-option info :nikola-hidetitle))
+		 (previewimage
+		  (org-nikola--get-option info :nikola-previewimage ""))
+		 (enclosure
+		  (org-nikola--get-option info :nikola-enclosure "")))
     (concat
      ".. title: "      title
      "\n.. slug: "     (replace-regexp-in-string "[　]+" "-"
@@ -183,7 +198,11 @@ holding export options."
      (cond ((not (string= "" nocomments))
 			(concat "\n.. nocomments: " nocomments)))
      (cond ((not (string= "" hidetitle))
-			(concat "\n.. hidetitle: " hidetitle))))))
+			(concat "\n.. hidetitle: " hidetitle)))
+     (cond ((not (string= "" previewimage))
+            (concat "\n.. previewimage: " previewimage)))
+     (cond ((not (string= "" enclosure))
+            (concat "\n.. enclosure: " enclosure))))))
 
 
 ;;; End-User functions

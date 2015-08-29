@@ -104,6 +104,19 @@
   .. tags: tag1, tag2
 #+END_SRC
 
+*** Section
+
+   Org:
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_SECTION: section
+#+END_EXAMPLE
+
+   reStructuredText:
+#+BEGIN_SRC rst
+  .. section: section
+#+END_SRC
+
+
 *** Category
 
    Org:

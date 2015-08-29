@@ -56,6 +56,11 @@
   :group 'org-export-nikola
   :type 'string)
 
+(defcustom org-nikola-section ""
+  "Default section in a Nikola article."
+  :group 'org-export-nikola
+  :type 'string)
+
 (defcustom org-nikola-category ""
   "Default category in a Nikola article."
   :group 'org-export-nikola
@@ -108,6 +113,7 @@
 	(:nikola-type "NIKOLA_TYPE" nil org-nikola-type)
 	(:nikola-password "NIKOLA_PASSWORD" nil org-nikola-password)
 	(:nikola-template "NIKOLA_TEMPLATE" nil org-nikola-nikola-template)
+    (:nikola-section "NIKOLA_SECTION" nil org-nikola-section)
 	(:nikola-updated "NIKOLA_UPDATED" nil "")
     (:nikola-category "NIKOLA_CATEGORY" nil org-nikola-category)
     (:nikola-annotations "NIKOLA_ANNOTATIONS" nil org-nikola-annotations)
@@ -161,6 +167,8 @@ holding export options."
 		  (org-nikola--get-option info :nikola-password ""))
 		 (template
 		  (org-nikola--get-option info :nikola-template ""))
+		 (section
+		  (org-nikola--get-option info :nikola-section ""))
 		 (updated
 		  (org-nikola--get-option info :nikola-updated ""))
 		 (category
@@ -194,6 +202,7 @@ holding export options."
 			(format " <%s>" email)))
      (cond ((not (string= "" password)) (concat "\n.. password: " password)))
 	 (cond ((not (string= "" template)) (concat "\n.. template: " template)))
+     (cond ((not (string= "" section)) (concat "\n.. section: " section)))
      (cond ((not (string= "" category)) (concat "\n.. category: " category)))
      (cond ((not (string= "" annotations))
 			(concat "\n.. annotations: " annotations)))

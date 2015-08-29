@@ -101,7 +101,7 @@
   :translate-alist
   '((template . org-nikola-template))
   :options-alist
-  '(
+  '((:description "DESCRIPTION" nil nil newline)
 	(:nikola-slug "NIKOLA_SLUG" nil "")
 	(:nikola-tags "NIKOLA_TAGS" nil "")
 	(:nikola-link "NIKOLA_LINK" nil "")

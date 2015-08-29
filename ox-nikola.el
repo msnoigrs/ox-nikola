@@ -102,8 +102,8 @@
   '((template . org-nikola-template))
   :options-alist
   '((:description "DESCRIPTION" nil nil newline)
+    (:keywords "KEYWORDS" nil nil space)
 	(:nikola-slug "NIKOLA_SLUG" nil "")
-	(:nikola-tags "NIKOLA_TAGS" nil "")
 	(:nikola-link "NIKOLA_LINK" nil "")
 	(:nikola-type "NIKOLA_TYPE" nil org-nikola-type)
 	(:nikola-password "NIKOLA_PASSWORD" nil org-nikola-password)
@@ -144,8 +144,8 @@ holding export options."
 		  (org-nikola--get-option info :nikola-slug title))
 		 (date
 		  (org-nikola--get-option info :date))
-		 (tags
-		  (org-nikola--get-option info :nikola-tags))
+		 (keywords
+		  (org-nikola--get-option info :keywords))
 		 (link
 		  (org-nikola--get-option info :nikola-link))
 		 (description
@@ -180,7 +180,7 @@ holding export options."
 												 (replace-regexp-in-string
 												  "[\s-]+" "-" slug))
      "\n.. date: "     date
-     "\n.. tags: "     tags
+     "\n.. tags: "     keywords
      "\n.. link: "     link
      "\n.. description: " description
      (cond ((not (string= "" type)) (concat "\n.. type: " type)))

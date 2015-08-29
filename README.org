@@ -50,6 +50,7 @@
   ,#+EMAIL: mailaddress@example.com
   ,#+DATE: 2013/12/31 00:00
   ,#+DESCRIPTION: description text
+  ,#+KEYWORDS: tag1, tag2
   ,#+OPTIONS: author:nil
   ,#+NIKOLA_TYPE: text
 #+END_EXAMPLE
@@ -59,7 +60,7 @@
   .. title: This is the title of the document
   .. slug: This-is-the-title-of-the-document
   .. date: 2013/12/31 00:00
-  .. tags:
+  .. tags: tag1, tag2
   .. link:
   .. description: description text
   .. type: text
@@ -83,7 +84,7 @@
 
    Org:
 #+BEGIN_EXAMPLE
-  ,#+NIKOLA_TAGS: tag1, tag2
+  ,#+KEYWORDS: tag1, tag2
 #+END_EXAMPLE
 
    reStructuredText:
@@ -258,7 +259,6 @@
   ,#+EMAIL: mailaddress@example.com
   ,#+DATE: `(format-time-string "%Y/%m/%d %H:%M" (current-time))`
   ,#+DESCRIPTION:
-  ,#+NIKOLA_TAGS:
   ,#+KEYWORDS:
   ,#+OPTIONS: H:4 num:nil toc:nil ::t |:t ^:t -:t f:t *:t <:t
   ,#+OPTIONS: tex:t todo:t pri:nil tags:t texht:nil

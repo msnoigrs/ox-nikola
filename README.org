@@ -66,6 +66,18 @@
   .. type: text
 #+END_SRC
 
+*** Updated
+
+   Org:
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_UPDATED: 2015/08/30
+#+END_EXAMPLE
+
+   reStructuredText:
+#+BEGIN_SRC rst
+  .. updated: 2015/08/30
+#+END_SRC
+
 *** Slug
 
    Org:

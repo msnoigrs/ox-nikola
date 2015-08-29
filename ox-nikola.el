@@ -108,6 +108,7 @@
 	(:nikola-type "NIKOLA_TYPE" nil org-nikola-type)
 	(:nikola-password "NIKOLA_PASSWORD" nil org-nikola-password)
 	(:nikola-template "NIKOLA_TEMPLATE" nil org-nikola-nikola-template)
+	(:nikola-updated "NIKOLA_UPDATED" nil "")
     (:nikola-category "NIKOLA_CATEGORY" nil org-nikola-category)
     (:nikola-annotations "NIKOLA_ANNOTATIONS" nil org-nikola-annotations)
     (:nikola-annotations "NIKOLA_NOANNOTATIONS" nil org-nikola-noannotations)
@@ -160,6 +161,8 @@ holding export options."
 		  (org-nikola--get-option info :nikola-password ""))
 		 (template
 		  (org-nikola--get-option info :nikola-template ""))
+		 (updated
+		  (org-nikola--get-option info :nikola-updated ""))
 		 (category
 		  (org-nikola--get-option info :nikola-category ""))
 		 (annotations
@@ -180,6 +183,7 @@ holding export options."
 												 (replace-regexp-in-string
 												  "[\s-]+" "-" slug))
      "\n.. date: "     date
+     (cond ((not (string= "" updated)) (concat "\n.. updated: " updated)))
      "\n.. tags: "     keywords
      "\n.. link: "     link
      "\n.. description: " description

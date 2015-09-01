@@ -121,7 +121,7 @@
     (:nikola-nocomments "NIKOLA_NOCOMMENTS" nil org-nikola-nocomments)
     (:nikola-hidetitle "NIKOLA_HIDETITLE" nil org-nikola-hidetitle)
     (:nikola-previewimage "NIKOLA_PREVIEWIMAGE" nil org-nikola-previewimage)
-    (:nikola-previewimage "NIKOLA_ENCLOSURE" nil org-nikola-enclosure)))
+    (:nikola-enclosure "NIKOLA_ENCLOSURE" nil org-nikola-enclosure)))
 
 
 ;;; Template

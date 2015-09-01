@@ -238,6 +238,29 @@
   .. hidetitle: True
 #+END_SRC
 
+*** Previewimage
+
+   Org:
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_PREVIEWIMAGE: images/looks_great_on_facebook.png
+#+END_EXAMPLE
+
+   reStructuredText:
+#+BEGIN_SRC rst
+  .. previewimage: images/looks_great_on_facebook.png
+#+END_SRC
+
+*** Enclosure
+
+   Org:
+#+BEGIN_EXAMPLE
+  ,#+NIKOLA_ENCLOSURE: images/looks_great_on_feed.png
+#+END_EXAMPLE
+
+   reStructuredText:
+#+BEGIN_SRC rst
+  .. Enclosure: images/looks_great_on_feed.png
+#+END_SRC
 
 ** Teasers
 

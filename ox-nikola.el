@@ -147,23 +147,43 @@ holding export options."
 
 (defun org-nikola--front-matter (info)
   (let* ((title
-		  (org-nikola--get-option info :title))
+		  (org-nikola--get-option info :title ""))
+		 (author
+		  (org-nikola--get-option info :author ""))
+		 (email
+		  (org-nikola--get-option info :email ""))
+		 (date
+		  (org-nikola--get-option info :date ""))
+		 (title
+		  (if (string= title "")
+			  (cond
+			   ((and (org-string-nw-p date) (org-string-nw-p author))
+				(concat
+				 author
+				 " "
+				 date
+				 (when (org-string-nw-p email) (concat " " email))))
+			   ((and (org-string-nw-p date) (org-string-nw-p email))
+				(concat
+				 email
+				 " "
+				 date))
+			   ((org-string-nw-p date)
+				date)
+			   ((and (org-string-nw-p author) (org-string-nw-p email))
+				(concat author " " email))
+			   ((org-string-nw-p author) author)
+			   ((org-string-nw-p email) email)) title))
 		 (slug
 		  (org-nikola--get-option info :nikola-slug title))
-		 (date
-		  (org-nikola--get-option info :date))
 		 (keywords
-		  (org-nikola--get-option info :keywords))
+		  (org-nikola--get-option info :keywords ""))
 		 (link
-		  (org-nikola--get-option info :nikola-link))
+		  (org-nikola--get-option info :nikola-link ""))
 		 (description
-		  (org-nikola--get-option info :description))
+		  (org-nikola--get-option info :description ""))
 		 (type
-		  (org-nikola--get-option info :nikola-type))
-		 (author
-		  (org-nikola--get-option info :author))
-		 (email
-		  (org-nikola--get-option info :email))
+		  (org-nikola--get-option info :nikola-type ""))
 		 (password
 		  (org-nikola--get-option info :nikola-password ""))
 		 (template

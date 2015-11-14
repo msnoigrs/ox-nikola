@@ -215,7 +215,8 @@ holding export options."
      (cond ((not (string= "" previewimage))
             (concat "\n.. previewimage: " previewimage)))
      (cond ((not (string= "" enclosure))
-            (concat "\n.. enclosure: " enclosure))))))
+            (concat "\n.. enclosure: " enclosure)))
+     "\n\n")))
 
 
 ;;; End-User functions

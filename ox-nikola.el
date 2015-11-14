@@ -132,6 +132,7 @@ CONTENTS is the transcoded contents string. INFO is a plist
 holding export options."
   (concat
    (org-nikola--front-matter info)
+   "\n"
    contents))
 
 (defun org-nikola--get-option (info property-name &optional default)
@@ -216,7 +217,7 @@ holding export options."
             (concat "\n.. previewimage: " previewimage)))
      (cond ((not (string= "" enclosure))
             (concat "\n.. enclosure: " enclosure)))
-     "\n\n")))
+     "\n")))
 
 
 ;;; End-User functions
